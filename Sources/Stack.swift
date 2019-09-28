@@ -71,3 +71,9 @@ extension Stack: CustomStringConvertible {
         .joined(separator: " ")
     }
 }
+
+extension Stack: ExpressibleByArrayLiteral {
+    init(arrayLiteral elements: Element...) {
+        storage = elements
+    }
+}
