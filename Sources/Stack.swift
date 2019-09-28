@@ -26,5 +26,48 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
+/*
+ A stack has 3 parts:
+    Storage: as the name says, to store the elements
+    Push: to add
+    Pop: to remove
+ */
 
-// TODO: Implement Stack
+struct Stack<Element: Equatable>: Equatable {
+    //Storage
+    private var storage: [Element] = []
+    
+    var isEmpty: Bool {
+        return peek() == nil
+    }
+    
+    init() { }
+    
+    init(_ elements: [Element]) {
+        storage = elements
+    }
+    
+    //Returns the last element of the stack without changing it
+    func peek() -> Element? {
+        return storage.last
+    }
+    
+    //Push
+    mutating func push(_ element: Element) {
+        storage.append(element)
+    }
+    
+    //Pop
+    @discardableResult
+    mutating func pop() -> Element? {
+        return storage.popLast()
+    }
+}
+
+extension Stack: CustomStringConvertible {
+    var description: String {
+        return storage
+        .map { ("\($0)") }
+        .joined(separator: " ")
+    }
+}
